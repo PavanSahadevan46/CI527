@@ -1,15 +1,15 @@
 window.addEventListener("load",function(evt){
     const q7button = document.querySelector("#btn1");
     q7button.addEventListener('click',function(evt){
-    
-        //get input from search
-       var search = "egypt";
-       
-       //construct url
+      //get input from search
+       var searchTerm = "egypt";    
+        //construct url
        //https://images-api.nasa.gov/search?q=Apollo%2011&media_type=image
        
+
+
         // const url = 'https://images-api.nasa.gov/search?q=Apollo%2011&media_type=image&q=' + encodeURIComponent(search);
-        const url = 'https://api.vam.ac.uk/v2/objects/search?q=' + encodeURIComponent(search);
+        const url = 'https://api.vam.ac.uk/v2/objects/search?q=' + encodeURIComponent(searchTerm);
 
         console.log(url);
 
@@ -42,6 +42,23 @@ window.addEventListener("load",function(evt){
         xhr.send();
 
     })
+
+    const searchForm = document.querySelector("#searchForm");
+    searchForm.addEventListener('submit',function(event){
+        event.preventDefault();
+        var userInput = document.querySelector('#query').value;
+        console.log(userInput);
+
+    });
+
+
+
+
+
+
+
+
+
 })
 
 
