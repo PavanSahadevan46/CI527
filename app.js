@@ -1,33 +1,27 @@
 window.addEventListener("load",function(evt){
-    const q7button = document.querySelector("#btn1");
-    q7button.addEventListener('click',function(evt){
-    
-        //get input from search
-       var search = "Apollo 11";
-       
-       //construct url
-       //https://images-api.nasa.gov/search?q=Apollo%2011&media_type=image
-       
-        const url = 'https://images-api.nasa.gov/search?q=Apollo%2011&media_type=image&q=' + encodeURIComponent(search);
 
-        console.log(url);
-
+    const searchForm = document.querySelector("#searchForm");
+    searchForm.addEventListener('submit',function(event){
+        event.preventDefault();
+        var userInput = document.querySelector('#query').value;
+        const url = 'https://api.vam.ac.uk/v2/objects/search?q='     + encodeURIComponent(userInput);
         var xhr = new XMLHttpRequest;
         xhr.addEventListener("load",function(){
             if(xhr.status == 200){
-                // console.log(xhr.responseText);
+                console.log(xhr.responseText);
                 const results = document.querySelector("#results");
                 const data = JSON.parse(xhr.responseText);
-                for(item of data.collection.items){
-
-                    // console.log(item.data[0].title);
-                    // console.log(item.data[0].description);
-                    // console.log(item.links[0].href);
-
+                for(record of data.records){
+                    const objectName = record._primaryTitle;
+                    const objectDate = record._primaryDate;
+                    // console.log(objectName);
+                    const para = document.createElement('p');
+                    para.textContent = objectName + "" + objectDate;
+                    results.appendChild(para);
                     const img = document.createElement('img');
-                    img.setAttribute('src',item.links[0].href );
-                    img.setAttribute('alt',item.data[0].description);
+                    img.setAttribute('src',record._images._primary_thumbnail);
                     results.appendChild(img);
+
 
 
 
@@ -41,4 +35,30 @@ window.addEventListener("load",function(evt){
         xhr.send();
 
     })
-})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// img.setAttribute('src',item.links[0].href );
+// img.setAttribute('alt',item.data[0].description);
+// results.appendChild(img);
+// console.log(item.data[0].description);
+// console.log(item.links[0].href);
+
