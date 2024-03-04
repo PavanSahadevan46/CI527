@@ -15,9 +15,13 @@
     </div>
     <form id = "searchForm">
         <input type="text" placeholder="Search the collections..." id="query">
-        <input type ="submit" value="Search">  
+        <input type ="submit" value="Search" required />  
         <input type ="reset" value="X"> 
+        
     </form>
+    <div class="inputValidation hidden">
+        <p>Cannot search for nothing!</p>
+    </div>
     <div class="lds-dual-ring hidden"></div>
     <div class="container1" id ="container1"></div>  
 

@@ -26,30 +26,21 @@ h3{
     padding: 2px 16px;
   }
 
+
   #searchForm{
     display: flex;
     min-height: 44px;
     margin: 0 auto;
     width: 690px;
     align-items: center;
-  }
-
-
-
-
-
-
-  #query{
     border-radius: 25px;
     min-height: 22px;
     margin-right:  0 auto;
   }
 
-
-
-
-
-
+  #query{
+    background-color: #393b3f;
+  }
 
 
 
@@ -62,6 +53,7 @@ h3{
     margin: auto;
     object-fit: contain;
   }
+
   #logo{
     margin: auto;
     display: block;
@@ -99,4 +91,9 @@ h3{
 
 .hidden{
   visibility: hidden !important;
+}
+
+
+.inputValidation{
+  color: red;
 }
