@@ -10,23 +10,30 @@
 </head>
 
 <body>
-    <p>
-        7. Create new nasa.html, and nasa.js files and link them up. Add a button in your HTML and a
-        click listener in your JS. When the button is clicked:
-    <ul>
-        <li>- execute an AJAX call to the API with the search term "Apollo 11"</li>
-        <li>- log the returned JSON to the console</li>
-        <li>- parse the returned JSON</li>
-        <li>- loop over all result items and log key data elements to the console.</li>
-    </ul>
-    </p>
-    <button id="btn1">click me</button>
-    <div id="results"></div>
+    <div id="VALogo">
+        <img src="V&ALogo.png" id="logo">
+    </div>
+    <form id = "searchForm">
+        
+        <fieldset>
+            <input type="text" placeholder="Search the collections..." id="query"  autofocus>
+            <input type ="submit" value="&#128270"/> 
+            <span></span> 
+            <input type ="reset" value="&#120143" />  
+        </fieldset>
+        
+    </form>
+    <div class="inputValidation hidden">
+        <p>Cannot search for nothing!</p>
+    </div>
+    <div class="lds-dual-ring hidden"></div>
+    <div class="container1" id ="container1"></div>  
 
-
-
-
+    <footer>
+        &#169 V&A museum(fix up the footer)
+    </footer>
 
 </body>
+    
 
 </html>

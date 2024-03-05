@@ -1,44 +1,77 @@
-window.addEventListener("load",function(evt){
-    const q7button = document.querySelector("#btn1");
-    q7button.addEventListener('click',function(evt){
-    
-        //get input from search
-       var search = "Apollo 11";
-       
-       //construct url
-       //https://images-api.nasa.gov/search?q=Apollo%2011&media_type=image
-       
-        const url = 'https://images-api.nasa.gov/search?q=Apollo%2011&media_type=image&q=' + encodeURIComponent(search);
+window.addEventListener("load", (evt) => {
 
-        console.log(url);
-
-        var xhr = new XMLHttpRequest;
-        xhr.addEventListener("load",function(){
-            if(xhr.status == 200){
-                // console.log(xhr.responseText);
-                const results = document.querySelector("#results");
-                const data = JSON.parse(xhr.responseText);
-                for(item of data.collection.items){
-
-                    // console.log(item.data[0].title);
-                    // console.log(item.data[0].description);
-                    // console.log(item.links[0].href);
-
-                    const img = document.createElement('img');
-                    img.setAttribute('src',item.links[0].href );
-                    img.setAttribute('alt',item.data[0].description);
-                    results.appendChild(img);
+    const searchForm = document.querySelector("#searchForm");
+    const container = document.querySelector('#container1');
+    const loadingIcon = document.querySelector(".lds-dual-ring");
+    const inputValidation = document.querySelector('.inputValidation');
+    inputValidation.classList.add("hidden");
 
 
 
+    searchForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        var userInput = document.querySelector('#query').value;
+        const url = 'https://api.vam.ac.uk/v2/objects/search?images=true&q=' + encodeURIComponent(userInput);
+        if (userInput == "") {
+            inputValidation.classList.remove("hidden");
+        } else {
+            loadingIcon.classList.remove("hidden");
+            inputValidation.classList.add("hidden");
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    console.log("Status code: " + response.status)
                 }
-            }else{
-                console.log('Status code: ' + xhr.status);
+                const data = await response.json();
+                console.log(data);
+
+                while (container.firstChild) {
+                    container.removeChild(container.lastChild);
+                }
+                for (record of data.records) {
+                    const objectName = record._primaryTitle;
+                    const objectDate = record._primaryDate;
+
+                    const cardDiv = document.createElement('div');
+                    cardDiv.classList.add('card');
+
+                    const imageElem = document.createElement('img');
+                    if (record._images._iiif_image_base_url == null) {
+                        imageElem.setAttribute('src', "imageNotFound.png" );
+                    } else {
+                        imageElem.setAttribute('src', record._images._iiif_image_base_url + "full/full/0/default.jpg");
+                    }
+                    // imageElem.setAttribute('alt', )   look where alt is in json
+                    imageElem.classList.add('objImage');
+                    cardDiv.appendChild(imageElem);
+
+                    const titleDiv = document.createElement('div');
+                    const titleHeading = document.createElement('h4');
+                    titleDiv.classList.add('objTitle');
+                    titleHeading.classList.add('titleHeading');
+                    titleHeading.textContent = objectName;
+                    titleDiv.appendChild(titleHeading);
+                    cardDiv.appendChild(titleDiv);
+
+                    const dateDiv = document.createElement('div');
+                    const dateHeading = document.createElement('h3');
+                    dateHeading.classList.add("dateHeading");
+                    dateDiv.classList.add('objDate');
+                    dateHeading.textContent = objectDate;
+                    dateDiv.appendChild(dateHeading);
+                    cardDiv.appendChild(dateDiv);
+
+                    container.appendChild(cardDiv);
+                }
+            } catch (error) {
+                console.log(error);
+            }finally{
+                loadingIcon.classList.add("hidden");
+                console.log("lskjdflksfj");
             }
-        })
+        }
 
-        xhr.open("GET",url,true);
-        xhr.send();
+    });
+});
 
-    })
-})
+
