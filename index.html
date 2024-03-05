@@ -10,28 +10,35 @@
 </head>
 
 <body>
+
     <div id="VALogo">
         <img src="V&ALogo.png" id="logo">
     </div>
-    <form id = "searchForm">
-        
-        <fieldset>
-            <input type="text" placeholder="Search the collections..." id="query"  autofocus>
-            <input type ="submit" value="&#128270"/> 
-            <span></span> 
-            <input type ="reset" value="&#120143" />  
-        </fieldset>
-        
+    <div id="title">
+        <h1>Victoria and Albert Museum Collections Search </h1>
+    </div>
+    <form class = "searchForm">
+        <input type="text" placeholder="Explore the collections..." id="query" autocomplete="off" autofocus>   
+        <div class="buttonGroup">
+            <button type ="submit">&#x1F50E;&#xFE0E;</button>
+        </div>      
+ 
     </form>
     <div class="inputValidation hidden">
         <p>Cannot search for nothing!</p>
     </div>
     <div class="lds-dual-ring hidden"></div>
-    <div class="container1" id ="container1"></div>  
+
+    <div class="container1"></div> 
+
+
+
+
 
     <footer>
         &#169 V&A museum(fix up the footer)
     </footer>
+
 
 </body>
     

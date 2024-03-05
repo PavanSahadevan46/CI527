@@ -4,7 +4,6 @@ body {
 
 }
 
-
 .dateHeading {
   color: white;
   font-weight: bolder;
@@ -18,12 +17,35 @@ body {
   align-items: center;
 }
 
+.container1 {
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: 33.33% 33.33% 33.33%;;
+  justify-content: space-around;
+  padding: 2%;
+  gap: 20px;
+}
 
+@media screen and (max-width: 768px) {
+  .container1 {
+    grid-template-columns: 33.33% 33.33%; ;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container1 {
+    grid-template-columns: 33.3%;
+  }
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 25px;
   display: flex;
+  width: auto;
+  height: auto;
+  padding-left: 2%;
+  padding-right: 2%;
   flex-direction: column;
   align-items: center;
 }
@@ -32,28 +54,94 @@ body {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.container1 {
-  padding: 2px 16px;
+@media screen and (max-width: 600px) {
+  .container1 {
+    width: 100%;
+    display: block;
+    margin-bottom: 0;
+  }
 }
 
-
-#searchForm {
+.searchForm {
   display: flex;
-  margin: auto;
-  width: auto;
-  height: auto;
+  justify-content: center;
   align-items: center;
-  border-radius: 25px;
+  width: 100%; 
+  max-width: 600px;
+  padding: 10px;
+  border-radius: 15px;
   background-color: grey;
+  margin: auto;
 }
-
 
 #query {
-  background-color: #393b3f;
+  background-color: grey; /* Set background color for the input */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add border radius */
+  padding: 8px; /* Add padding */
+  width: 70%; /* Set width of the search bar */
+}
+::placeholder{
+  color:whitesmoke
+}
 
+.buttonGroup{
+  display: flex;
+  margin-left: 10px;
+}
+.buttonGroup button {
+  margin-left: 5px; /* Add spacing between buttons */
+  padding: 8px 15px; /* Add padding */
+  border: none; /* Remove default button border */
+  border-radius: 5px; /* Add border radius */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+@media screen and (max-width: 768px) {
+  .searchForm {
+    flex-direction:row; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 10px; /* Increase padding */
+  }
+
+  #query {
+    width: 100%; /* Set search bar width to 100% */
+  }
+
+  .buttonGroup {
+    margin: auto;
+  }
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#title {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .objImage {
   max-width: 100%;
@@ -73,6 +161,10 @@ body {
   max-height: 100%;
   width: fit-content;
   height: fit-content;
+}
+
+.inputValidation {
+  color: red;
 }
 
 .lds-dual-ring {
@@ -108,13 +200,6 @@ body {
 }
 
 
-.inputValidation {
-  color: red;
-}
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
-}
+
+
+

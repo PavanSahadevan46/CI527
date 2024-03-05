@@ -1,7 +1,7 @@
 window.addEventListener("load", (evt) => {
 
-    const searchForm = document.querySelector("#searchForm");
-    const container = document.querySelector('#container1');
+    const searchForm = document.querySelector(".searchForm");
+    const container = document.querySelector('.container1');
     const loadingIcon = document.querySelector(".lds-dual-ring");
     const inputValidation = document.querySelector('.inputValidation');
     inputValidation.classList.add("hidden");
@@ -11,7 +11,7 @@ window.addEventListener("load", (evt) => {
     searchForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         var userInput = document.querySelector('#query').value;
-        const url = 'https://api.vam.ac.uk/v2/objects/search?images=true&q=' + encodeURIComponent(userInput);
+        const url = 'https://api.vam.ac.uk/v2/objects/search?&q=' + encodeURIComponent(userInput);
         if (userInput == "") {
             inputValidation.classList.remove("hidden");
         } else {
@@ -25,6 +25,11 @@ window.addEventListener("load", (evt) => {
                 const data = await response.json();
                 console.log(data);
 
+                if (data == null) {
+                    console.log("No results found!");
+                }
+
+
                 while (container.firstChild) {
                     container.removeChild(container.lastChild);
                 }
@@ -37,7 +42,7 @@ window.addEventListener("load", (evt) => {
 
                     const imageElem = document.createElement('img');
                     if (record._images._iiif_image_base_url == null) {
-                        imageElem.setAttribute('src', "imageNotFound.png" );
+                        imageElem.setAttribute('src', "imageNotFound.png");
                     } else {
                         imageElem.setAttribute('src', record._images._iiif_image_base_url + "full/full/0/default.jpg");
                     }
@@ -65,9 +70,8 @@ window.addEventListener("load", (evt) => {
                 }
             } catch (error) {
                 console.log(error);
-            }finally{
+            } finally {
                 loadingIcon.classList.add("hidden");
-                console.log("lskjdflksfj");
             }
         }
 
