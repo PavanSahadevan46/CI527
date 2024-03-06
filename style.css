@@ -75,11 +75,11 @@ body {
 }
 
 #query {
-  background-color: grey; /* Set background color for the input */
-  border: none; /* Remove border */
-  border-radius: 5px; /* Add border radius */
-  padding: 8px; /* Add padding */
-  width: 70%; /* Set width of the search bar */
+  background-color: grey;
+  border: none; 
+  border-radius: 5px;
+  padding: 8px;
+  width: 70%;
 }
 ::placeholder{
   color:whitesmoke
@@ -90,22 +90,22 @@ body {
   margin-left: 10px;
 }
 .buttonGroup button {
-  margin-left: 5px; /* Add spacing between buttons */
-  padding: 8px 15px; /* Add padding */
-  border: none; /* Remove default button border */
-  border-radius: 5px; /* Add border radius */
-  cursor: pointer; /* Change cursor to pointer on hover */
+  margin-left: 5px; 
+  padding: 8px 15px;
+  border: none; 
+  border-radius: 5px;
+  cursor: pointer; 
 }
 
 @media screen and (max-width: 768px) {
   .searchForm {
-    flex-direction:row; /* Stack elements vertically */
-    align-items: center; /* Center items horizontally */
-    padding: 10px; /* Increase padding */
+    flex-direction:row; 
+    align-items: center;
+    padding: 10px;
   }
 
   #query {
-    width: 100%; /* Set search bar width to 100% */
+    width: 100%; 
   }
 
   .buttonGroup {
@@ -167,39 +167,23 @@ body {
   color: red;
 }
 
-.lds-dual-ring {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-}
-
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #fff;
-  border-color: #fff transparent #fff transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
-}
-
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .hidden {
   visibility: hidden !important;
 }
+.footer{
+  color: white;
+}
 
 
-
-
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid grey;
+  border-right-color: white;
+  animation: l2 1s infinite linear;
+  margin: auto;
+  display: block;
+}
+@keyframes l2 {to{transform: rotate(1turn)}}
 
